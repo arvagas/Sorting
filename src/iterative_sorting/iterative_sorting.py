@@ -34,17 +34,22 @@ def bubble_sort( arr ):
 # STRETCH: implement the Count Sort function below
 def count_sort( arr, maximum=-1 ):
     arr_valid = True
-    # check to make sure there are no negative numbers in array
+    big_num = 0
+    # use this for loop to check two things: no negative and biggest number
     for i in arr:
+        # find the biggest number
+        if i > big_num:
+            big_num = i
+        # check to make sure there are no negative numbers in array
         if i < 0:
             arr_valid = False
+            # we break since there's no point in checking the rest if it's going to fail anyway
+            break
+
     # run block of code if array is valid
     if arr_valid == True:
-        # create a counting arr based on length of inputted array
-        count_arr = list(range(0, len(arr)))
-        # set values of counting arr to zero
-        for counter in count_arr:
-            count_arr[counter] = 0
+        # create a counting arr with the length of the biggest number (+ 1)
+        count_arr = [0] * (big_num + 1)
         # sort through arr by updating count arr
         for i in arr:
             count_arr[i] += 1
